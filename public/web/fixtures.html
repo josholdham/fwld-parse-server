@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>FWLD Tasks</title>
+
+    <!-- Bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* Space out content a bit */
+        body {
+          padding-top: 20px;
+          padding-bottom: 20px;
+        }
+
+        /* Everything but the jumbotron gets side spacing for mobile first views */
+        .header,
+        .marketing,
+        .footer {
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+
+        /* Custom page header */
+        .header {
+          padding-bottom: 20px;
+          border-bottom: 1px solid #e5e5e5;
+        }
+        /* Make the masthead heading the same height as the navigation */
+        .header h3 {
+          margin-top: 0;
+          margin-bottom: 0;
+          line-height: 40px;
+        }
+
+        /* Custom page footer */
+        .footer {
+          padding-top: 19px;
+          color: #777;
+          border-top: 1px solid #e5e5e5;
+        }
+
+        /* Customize container */
+        @media (min-width: 768px) {
+          .container {
+            max-width: 730px;
+          }
+        }
+        .container-narrow > hr {
+          margin: 30px 0;
+        }
+
+        /* Main marketing message and sign up button */
+        .jumbotron {
+          text-align: center;
+          border-bottom: 1px solid #e5e5e5;
+        }
+        .jumbotron .btn {
+          padding: 14px 24px;
+          font-size: 21px;
+        }
+
+        /* Supporting marketing content */
+        .marketing {
+          margin: 40px 0;
+        }
+        .marketing p + h4 {
+          margin-top: 28px;
+        }
+
+        /* Responsive: Portrait tablets and up */
+        @media screen and (min-width: 768px) {
+          /* Remove the padding we set earlier */
+          .header,
+          .marketing,
+          .footer {
+            padding-right: 0;
+            padding-left: 0;
+          }
+          /* Space out the masthead */
+          .header {
+            margin-bottom: 30px;
+          }
+          /* Remove the bottom border on the jumbotron for visual effect */
+          .jumbotron {
+            border-bottom: 0;
+          }
+        }
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation"><a href="tasks.html">Tasks</a></li>
+            <li role="presentation" class="active"><a href="fixtures.html">Fixtures</a></li>
+            <!-- <li role="presentation"><a href="#">About</a></li>
+            <li role="presentation"><a href="#">Contact</a></li> -->
+          </ul>
+        </nav>
+        <h3 class="text-muted">FWLD Tasks</h3>
+      </div>
+
+      <div class="jumbotron">
+        <h1>Query / Check Fixtures</h1>
+        <p class="lead">Retrieve Fixtures</p>
+        <!-- <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p> -->
+      </div>
+
+      <div class="row marketing">
+        
+      </div>
+
+      <footer class="footer">
+        <p>&copy; 2015 Company, Inc.</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="http://www.parsecdn.com/js/parse-latest.js"></script>
+
+    <script type="text/javascript">
+        Parse.initialize("12345");
+        Parse.serverURL = 'http://localhost:1337/parse';
+
+        $('#allFixturesBtn').on('click', function(){
+            console.log('click')
+            $('#allFixturesStatus').html('Running')
+            var id = $('#allFixturesInput').val();
+
+            Parse.Cloud.run('getInitialFixtures', { leagueId: id }).then(function(data) {
+              console.log(data)
+              $('#allFixturesStatus').html('Success')
+            });
+        })
+
+        $('#updateOdds').on('click', function(){
+            console.log('click')
+            $('#updateOddsStatus').html('Running')
+
+            Parse.Cloud.run('updateOdds', {}).then(function(data) {
+              console.log(data)
+              $('#updateOddsStatus').html('Success')
+            });
+        })
+
+        $('#checkScores').on('click', function(){
+            console.log('click check')
+            $('#checkScoresStatus').html('Running')
+
+            Parse.Cloud.run('checkScores', {}).then(function(data) {
+              console.log(data)
+              $('#checkScoresStatus').html('Success')
+            });
+        })
+    </script>
+  </body>
+</html>

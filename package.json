@@ -9,10 +9,18 @@
   },
   "license": "MIT",
   "dependencies": {
-    "express": "~4.11.x",
+    "cheerio": "latest",
+    "cron": "^1.1.0",
+    "express": "latest",
     "kerberos": "~0.0.x",
-    "parse": "~1.8.0",
-    "parse-server": "~2.2.2"
+    "memory-cache": "^0.1.5",
+    "node-horseman": "^3.0.1",
+    "node-schedule": "^1.1.0",
+    "parse": "1.8.4",
+    "parse-server": "2.2.7",
+    "phantomjs": "^2.1.7",
+    "q": "^1.2.0",
+    "request": "latest"
   },
   "scripts": {
     "start": "node index.js"
