@@ -14,7 +14,6 @@
     "express": "latest",
     "kerberos": "~0.0.x",
     "memory-cache": "^0.1.5",
-    "node-horseman": "^3.0.1",
     "node-schedule": "^1.1.0",
     "parse": "1.8.4",
     "parse-server": "2.2.7",

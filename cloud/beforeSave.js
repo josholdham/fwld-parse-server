@@ -10,16 +10,13 @@ var totals = require('./totals');
 // 
 function Fixture(req, res) {
     // Ensure gameweek is a number
-    if (isNaN(req.object.get('gameweek'))) {
-        var gw = req.object.get('gameweek');
-        var gw = parseInt(gw, 10);
-        if (!isNan(gw)) {
-            req.object.set('gameweek', gw)
-        }
-        else {
-            console.log('[BS:Fixture] - We couldn\'t get a number for the gameweek')
-            res.error("We couldn't get a number for the gameweek")
-        }
+    var validation = validateFixture(req);
+    if (validation.errors.length > 0) {
+        res.error('Validation Error');
+        return false;
+    }
+    else {
+        req = validation.req;
     }
 
     //
@@ -40,11 +37,36 @@ function Fixture(req, res) {
                 }
                 res.success();
             }
+            else {
+                res.error("Nothing to update");
+                console.log('NOTHING NEW')
+            }
         }
         else {
+            res.error("Nothing to update");
             console.log('NOTHING NEW')
         }
     }
+}
+
+function validateFixture(req) {
+    var validation = {};
+    validation.req = req;
+    validation.errors = [];
+
+    if (isNaN(req.object.get('gameweek'))) {
+        var gw = req.object.get('gameweek');
+        var gw = parseInt(gw, 10);
+        if (!isNan(gw)) {
+            req.object.set('gameweek', gw)
+        }
+        else {
+            console.log("[BS:Fixture] - We couldn't get a number for the gameweek")
+            validation.errors.push("We couldn't get a number for the gameweek");
+        }
+    }
+
+    return validation;
 }
 
 function updateLogs(objectType, object) {

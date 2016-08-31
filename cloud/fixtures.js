@@ -1,6 +1,7 @@
 module.exports = {
     getFixtures : getFixtures,
-    returnFixtures : returnFixtures
+    returnFixtures : returnFixtures,
+    queryFixtures : queryFixtures
 };
 
 var express = require('express');

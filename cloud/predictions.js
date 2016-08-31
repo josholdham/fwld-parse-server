@@ -13,8 +13,6 @@ var request = require("request");
 var cache = require('memory-cache');
 
 function makePrediction(req, res) {
-    console.log('****')
-    console.log(req.user)
     if (!req.user) {
         res.error({'code': 399})
     }
