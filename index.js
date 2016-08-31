@@ -43,7 +43,7 @@ console.log(process.env.NODE_ENV)
       cloud: process.env.CLOUD_CODE_MAIN || __dirname + '/cloud/main.js',
       appId: process.env.APP_ID || '12345',
       masterKey: process.env.MASTER_KEY || '54321', //Add your master key here. Keep it secret!
-      serverURL: 'https://smooth-answer-142015.appspot.com/parse',  // Don't forget to change to https if needed
+      serverURL: 'https://smooth-answer-142015.appspot.com:8084/parse',  // Don't forget to change to https if needed
       liveQuery: {
         classNames: ["Gameweek"] // List of classes to support for query subscriptions
       }
@@ -65,7 +65,7 @@ app.use(mountPath, api);
 
 // Parse Server plays nicely with the rest of your web routes
 app.get('/', function(req, res) {
-  res.status(200).send('Make sure to star the parse-server repo on GitHub -- updated!');
+  res.status(200).send('Make sure to star the parse-server repo on GitHub -- updated AGAIN!');
 });
 
 // There will be a test page available on the /test path of your server url
